@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Add additional CSS in static file -->
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
@@ -12,95 +13,202 @@
 
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <script>
+
+      function hashCode() {
+        var date = new Date();
+        var hash = 0;
+        var dateStr = date.toString();
+        var dateFmt = date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear() + " " + date.getHours() + ":" + date.getMinutes();
+
+        for (i = 0; i < dateStr.length; i++) {
+          hash = Math.imul(31, hash) + dateStr.charCodeAt(i) | 0;
+        }
+        
+        if ( hash < 0 ) {
+          hash = hash * (-1)
+        }
+
+        hash = Math.trunc(hash / 1000)
+
+        return [ "aut"+hash, dateFmt ];
+
+      }
+
+
+    </script>
   </head>
   <body>
 
-    <form>
-      
-      <!--  Resultado Geral -->
-      <div class="form-group">
-        <label for="inputResultadoGeral">Resultado Geral</label>
-        <input type="text" class="form-control" id="inputResultadoGeral" placeholder="Ex.: Palmeiras 4x0">
+    <form  action="sendbet" method="post">
+      {% csrf_token %}
+
+      <input type="hidden" name="aut" id="aut"/>
+      <script>      document.getElementById("aut").value = hashCode()[0];</script>
+
+      <input type="hidden" name="date" id="date"/>
+      <script>      document.getElementById("date").value = hashCode()[1];</script>
+
+
+      <div class="container-fluid">
+
+        <div class="row">
+
+          <div class="col-sm-6">
+            <div class="box" style="background-color: green; visibility: visible;" ></div>
+          </div>
+
+        </div>
+        <div class="row">
+
+          <div class="col-sm-6">
+              <!--  Apostador -->
+            <div class="form-group">
+              <label for="inputApostador" style="color: darkgreen;">Apostador:</label>
+              <input type="text" class="form-control" name="inputApostador" id="inputApostador" placeholder="Digite seu nome aqui" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" oninvalid="this.setCustomValidity('Campo Obrigatorio')">
+            </div>
+          </div>
+
+        </div>
+        <div class="row">
+
+          <div class="col-sm-6">
+              <!--  Resultado Geral -->
+            <div class="form-group">
+              <label for="inputResultadoGeral" style="color: darkgreen;">Resultado Geral</label>
+              <input type="text" class="form-control" name="inputResultadoGeral" id="inputResultadoGeral" placeholder="Palmeiras 4x0" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" oninvalid="this.setCustomValidity('Campo Obrigatorio')">
+            </div>
+          </div>
+
+        </div>
+        <div class="row">
+
+          <div class="col-sm-6">
+            <!--  Minuto do Primeiro Gol -->
+            <div class="form-group">
+              <label for="inputMinutoPrimeiroGol" style="color: darkgreen;">Minuto do Primeiro Gol</label>
+              <input type="text" class="form-control" name="inputMinutoPrimeiroGol" id="inputMinutoPrimeiroGol" placeholder="Ex.: 25 min do Primeiro Tempo"  required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" oninvalid="this.setCustomValidity('Campo Obrigatorio')">
+            </div>
+          </div>
+
+        </div>
+        <div class="row">
+
+          <div class="col-sm-6">
+            <!--  Primeiro Lance -->
+            <label class="form-label" for="form12" style="color: darkgreen;">Primeiro lance do jogo</label>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="radioPrimeiroLance" id="radioPrimeiroLance1" value="Lateral" checked/>
+              <label class="form-check-label" for="radioPrimeiroLance1" style="color: grey;"> Lateral </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="radioPrimeiroLance" id="radioPrimeiroLance2" value="Impedimento"/>
+              <label class="form-check-label" for="radioPrimeiroLance2" style="color: grey;"> Impedimento </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="radioPrimeiroLance" id="radioPrimeiroLance3" value="Escanteio" />
+              <label class="form-check-label" for="radioPrimeiroLance3" style="color: grey;"> Escanteio </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="radioPrimeiroLance" id="radioPrimeiroLance4" value="Gol"/>
+              <label class="form-check-label" for="radioPrimeiroLance4" style="color: grey;"> Gol </label>
+            </div>
+          </div>
+
+        </div>
+        <div class="row">
+
+          <div class="col-sm-6">
+            <!--  Teremos Penalti -->
+            <label class="form-label" for="form12" style="color: darkgreen;">Teremos Penalti?</label>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="radioTeremosPenalti" id="radioTeremosPenalti1" value="Sim" checked/>
+              <label class="form-check-label" for="radioTeremosPenalti1" style="color: grey;"> Sim </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="radioTeremosPenalti" id="radioTeremosPenalti2" value="Nao" />
+              <label class="form-check-label" for="radioTeremosPenalti2" style="color: grey;"> Não </label>
+            </div>
+          </div>
+
+        </div>
+        <div class="row">
+
+          <div class="col-sm-6">
+            <!--  Teremos Gol nos Acrescimos -->
+            <label class="form-label" for="form12" style="color: darkgreen;">Teremos Gol nos Acrescimos?</label>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="radioTeremosGolAcrescimos" id="radioTeremosGolAcrescimos1" value="Sim" checked/>
+              <label class="form-check-label" for="radioTeremosGolAcrescimos1" style="color: grey;"> Sim </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="radioTeremosGolAcrescimos" id="radioTeremosGolAcrescimos2" value="Nao"/>
+              <label class="form-check-label" for="radioTeremosGolAcrescimos2" style="color: grey;"> Não </label>
+            </div>
+          </div>
+
+        </div>
+        <div class="row">
+
+          <div class="col-sm-6">
+            <!--  Teremos Gol de Cabeca -->
+            <label class="form-label" for="form12" style="color: darkgreen;">Teremos Gol de Cabeça?</label>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="radioTeremosGolCabeca" id="radioTeremosGolCabeca1" value="Sim" checked/>
+              <label class="form-check-label" for="radioTeremosGolCabeca1" style="color: grey;"> Sim </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="radioTeremosGolCabeca" id="radioTeremosGolCabeca2" value="Nao"/>
+              <label class="form-check-label" for="radioTeremosGolCabeca2" style="color: grey;"> Não </label>
+            </div>
+          </div>
+
+        </div>
+        <div class="row">
+
+          <div class="col-sm-6">
+            <!--  Numero de Escanteios do Palmeiras -->
+            <div class="form-group">
+              <label for="inputNumeroEscanteios" style="color: darkgreen;">Numero de Escanteios do Palmeiras</label>
+              <input type="text" class="form-control" name="inputNumerosEscanteios" id="inputNumeroEscanteios" placeholder="Ex.: 8" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" oninvalid="this.setCustomValidity('Campo Obrigatorio')">
+            </div>
+          </div>
+
+        </div>
+        <div class="row">
+
+          <div class="col-sm-6">
+            <!--  Primeiro Jogador do Pameiras a Tomar Cartao -->
+            <div class="form-group">
+              <label for="inputPrimeiroCartao" style="color: darkgreen;">Primeiro Jogador do Palmeiras a Tomar Cartao</label>
+              <input type="text" class="form-control" name="inputPrimeiroCartao" id="inputPrimeiroCartao" placeholder="Ex.: Evair" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" oninvalid="this.setCustomValidity('Campo Obrigatorio')">
+            </div>
+          </div>
+
+        </div>
+        <div class="row">
+
+          <div class="col-sm-6">
+            <!--  Numero de Impedimentos do Palmeiras -->
+            <div class="form-group">
+              <label for="inputNumeroImpedimentos" style="color: darkgreen;">Numero de Impedimentos do Palmeiras</label>
+              <input type="text" class="form-control" name="inputNumeroImpedimentos" id="inputNumeroImpedimentos" placeholder="Ex.: 3" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" oninvalid="this.setCustomValidity('Campo Obrigatorio')">
+            </div>
+          </div>
+
+        </div>
+        <div class="row">
+
+          <div class="col-sm-6">
+            <!--  Submit -->
+            <button type="submit" class="btn btn-secondary" style="background-color: green; color: white;">Enviar</button>
+          </div>
+
+        </div>
+
       </div>
 
-      <!--  Minuto do Primeiro Gol -->
-      <div class="form-group">
-        <label for="inputMinutoPrimeiroGol">Minuto do Primeiro Gol</label>
-        <input type="text" class="form-control" id="inputMinutoPrimeiroGol" placeholder="Ex.: 25 min do Primeiro Tempo">
-      </div>
-
-      <!--  Primeiro Lance -->
-      <label class="form-label" for="form12">Primeiro lance do jogo</label>
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="radioPrimeiroLance" id="radioPrimeiroLance1"/>
-        <label class="form-check-label" for="radioPrimeiroLance1"> Lateral </label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="radioPrimeiroLance" id="radioPrimeiroLance2" checked/>
-        <label class="form-check-label" for="radioPrimeiroLance2"> Impedimento </label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="radioPrimeiroLance" id="radioPrimeiroLance2" checked/>
-        <label class="form-check-label" for="radioPrimeiroLance3"> Escanteio </label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="radioPrimeiroLance" id="radioPrimeiroLance2" checked/>
-        <label class="form-check-label" for="radioPrimeiroLance4"> Gol </label>
-      </div>
-      
-      <!--  Teremos Penalti -->
-      <label class="form-label" for="form12">Teremos Penalti?</label>
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="radioTeremosPenalti" id="radioTeremosPenalti1"/>
-        <label class="form-check-label" for="radioTeremosPenalti1"> Sim </label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="radioTeremosPenalti" id="radioTeremosPenalti2"/>
-        <label class="form-check-label" for="radioTeremosPenalti2"> Não </label>
-      </div>
-
-      <!--  Teremos Gol nos Acrescimos -->
-      <label class="form-label" for="form12">Teremos Gol nos Acrescimos?</label>
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="radioTeremosGolAcrescimos" id="radioTeremosGolAcrescimos1"/>
-        <label class="form-check-label" for="radioTeremosGolAcrescimos1"> Sim </label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="radioTeremosGolAcrescimos" id="radioTeremosGolAcrescimos2"/>
-        <label class="form-check-label" for="radioTeremosGolAcrescimos2"> Não </label>
-      </div>
-
-      <!--  Teremos Gol de Cabeca -->
-      <label class="form-label" for="form12">Teremos Gol de Cabeça?</label>
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="radioTeremosGolCabeca" id="radioTeremosGolCabeca1"/>
-        <label class="form-check-label" for="radioTeremosGolCabeca1"> Sim </label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="radioTeremosGolCabeca" id="radioTeremosGolCabeca2"/>
-        <label class="form-check-label" for="radioTeremosGolCabeca2"> Não </label>
-      </div>
-
-      <!--  Numero de Escanteios do Palmeiras -->
-      <div class="form-group">
-        <label for="inputNumeroEscanteios">Numero de Escanteios do Palmeiras</label>
-        <input type="text" class="form-control" id="inputNumeroEscanteios" placeholder="Ex.: 8">
-      </div>
-
-      <!--  Primeiro Jogador do Pameiras a Tomar Cartao -->
-      <div class="form-group">
-        <label for="inputPrimeiroCartao">Primeiro Jogador do Pameiras a Tomar Cartao</label>
-        <input type="text" class="form-control" id="inputPrimeiroCartao" placeholder="Ex.: Evair">
-      </div>
-
-     <!--  Numero de Impedimentos do Palmeiras -->
-     <div class="form-group">
-      <label for="inputNumeroImpedimentos">Numero de Impedimentos do Palmeiras</label>
-      <input type="text" class="form-control" id="inputNumeroImpedimentos" placeholder="Ex.: 3">
-    </div>
-
-    <!--  Submit -->
-      <button type="submit" class="btn btn-primary">Submit</button>
     </form>
   </body>
 </html>
