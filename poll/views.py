@@ -20,4 +20,7 @@ def sendbet(request):
         for item in formItems:
             f.write("%s\n" % str(item))
 
-    return HttpResponseRedirect('/poll')
+    return HttpResponseRedirect('/pollthanks')
+
+def pollthanks(request):
+    return render(request, 'pollthanks.html')

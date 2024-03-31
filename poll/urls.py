@@ -5,5 +5,6 @@ from django.urls import include, path
 urlpatterns = [
     path("poll", views.index, name="index"),
     path("sendbet", views.sendbet, name="sendbet"),
+    path("pollthanks", views.pollthanks, name="pollthanks"),
 
 ]
