@@ -1,5 +1,5 @@
 __pycache__
-./logs
-./sent
+logs
+sent/*
 ./tosend
 PyWhatKit_DB.txt

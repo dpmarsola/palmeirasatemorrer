@@ -37,12 +37,16 @@ readfiles()
 	then
 		while read filename
 		do
-			echo $filename
+			echo $(date) ">>>> Sending File... $filename"
 			hour=$(date +%H)
 			minute=$(date +%M)
 
 			dateHourMinuteCalculation  
-			python3 sendMessage.py $hour $minute $filename
+			echo "Sending file... $filename at $hour:$minute" >> ./logs/sendMessage.log 2>&1
+			python3 sendMessage.py $hour $minute $filename >> ./logs/sendMessage.log 2>&1
+			echo "File sent... $filename at $hour:$minute" >> ./logs/sendMessage.log 2>&1
+
+			echo $(date) ">>>> Moving file... $filename to ./sent" >> ./logs/sendMessage.log 2>&1
 			mv $filename ./sent
 
 		done <<< $(ls ./tosend/*.msg 2> /dev/null)
