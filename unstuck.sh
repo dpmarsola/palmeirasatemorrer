@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 
-echo $(date) ">>>> Killing all processes" >> ./logs/stop.log
+echo $(date) ">>>> Killing stuck processes" >> ./logs/unstuck.log
 
-kill -9 $(ps -ef | grep sendMessage | grep -v color | cut -c'11-19') >> ./logs/stop.log 2>&1
+kill -9 $(ps -ef | grep sendMessage | grep -v color | cut -c'11-19') >> ./logs/unstuck.log 2>&1
 
-echo $(date) ">>>>> All processes killed" >> ./logs/stop.log
+echo $(date) ">>>>> All processes are unstuk" >> ./logs/unstuck.log

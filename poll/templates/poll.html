@@ -39,7 +39,7 @@
 
     </script>
   </head>
-  <body>
+  <body style="background-color: rgb(0, 0, 0);">
 
     <form  action="sendbet" method="post">
       {% csrf_token %}
@@ -51,32 +51,32 @@
       <script>      document.getElementById("date").value = hashCode()[1];</script>
 
 
-      <div class="container-fluid">
+      <div class="container-fluid" style="background-color: rgb(0, 0, 0);">
 
         <div class="row">
-
           <div class="col-sm-6">
-            <div class="box" style="background-color: green; visibility: visible;" ></div>
+            <div class="box" style="visibility: visible;" ><img src="https://pbs.twimg.com/media/Du8TKaMW0AA7Lnc.jpg"></div>
           </div>
-
         </div>
+
         <div class="row">
 
           <div class="col-sm-6">
               <!--  Apostador -->
             <div class="form-group">
-              <label for="inputApostador" style="color: darkgreen;">Apostador:</label>
+              <label for="inputApostador" style="color: rgb(179, 209, 179);">Apostador:</label>
               <input type="text" class="form-control" name="inputApostador" id="inputApostador" placeholder="Digite seu nome aqui" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" oninvalid="this.setCustomValidity('Campo Obrigatorio')">
             </div>
           </div>
 
         </div>
+
         <div class="row">
 
           <div class="col-sm-6">
               <!--  Resultado Geral -->
             <div class="form-group">
-              <label for="inputResultadoGeral" style="color: darkgreen;">Resultado Geral</label>
+              <label for="inputResultadoGeral" style="color: rgb(179, 209, 179);">Resultado Geral</label>
               <input type="text" class="form-control" name="inputResultadoGeral" id="inputResultadoGeral" placeholder="Palmeiras 4x0" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" oninvalid="this.setCustomValidity('Campo Obrigatorio')">
             </div>
           </div>
@@ -87,7 +87,7 @@
           <div class="col-sm-6">
             <!--  Minuto do Primeiro Gol -->
             <div class="form-group">
-              <label for="inputMinutoPrimeiroGol" style="color: darkgreen;">Minuto do Primeiro Gol</label>
+              <label for="inputMinutoPrimeiroGol" style="color: rgb(179, 209, 179);">Minuto do Primeiro Gol</label>
               <input type="text" class="form-control" name="inputMinutoPrimeiroGol" id="inputMinutoPrimeiroGol" placeholder="Ex.: 25 min do Primeiro Tempo"  required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" oninvalid="this.setCustomValidity('Campo Obrigatorio')">
             </div>
           </div>
@@ -97,7 +97,7 @@
 
           <div class="col-sm-6">
             <!--  Primeiro Lance -->
-            <label class="form-label" for="form12" style="color: darkgreen;">Primeiro lance do jogo</label>
+            <label class="form-label" for="form12" style="color: rgb(179, 209, 179);">Primeiro lance do jogo</label>
             <div class="form-check">
               <input class="form-check-input" type="radio" name="radioPrimeiroLance" id="radioPrimeiroLance1" value="Lateral" checked/>
               <label class="form-check-label" for="radioPrimeiroLance1" style="color: grey;"> Lateral </label>
@@ -121,7 +121,7 @@
 
           <div class="col-sm-6">
             <!--  Teremos Penalti -->
-            <label class="form-label" for="form12" style="color: darkgreen;">Teremos Penalti?</label>
+            <label class="form-label" for="form12" style="color: rgb(179, 209, 179);">Teremos Penalti?</label>
             <div class="form-check">
               <input class="form-check-input" type="radio" name="radioTeremosPenalti" id="radioTeremosPenalti1" value="Sim" checked/>
               <label class="form-check-label" for="radioTeremosPenalti1" style="color: grey;"> Sim </label>
@@ -137,7 +137,7 @@
 
           <div class="col-sm-6">
             <!--  Teremos Gol nos Acrescimos -->
-            <label class="form-label" for="form12" style="color: darkgreen;">Teremos Gol nos Acrescimos?</label>
+            <label class="form-label" for="form12" style="color: rgb(179, 209, 179);">Teremos Gol nos Acrescimos?</label>
             <div class="form-check">
               <input class="form-check-input" type="radio" name="radioTeremosGolAcrescimos" id="radioTeremosGolAcrescimos1" value="Sim" checked/>
               <label class="form-check-label" for="radioTeremosGolAcrescimos1" style="color: grey;"> Sim </label>
@@ -153,7 +153,7 @@
 
           <div class="col-sm-6">
             <!--  Teremos Gol de Cabeca -->
-            <label class="form-label" for="form12" style="color: darkgreen;">Teremos Gol de Cabeça?</label>
+            <label class="form-label" for="form12" style="color: rgb(179, 209, 179);">Teremos Gol de Cabeça?</label>
             <div class="form-check">
               <input class="form-check-input" type="radio" name="radioTeremosGolCabeca" id="radioTeremosGolCabeca1" value="Sim" checked/>
               <label class="form-check-label" for="radioTeremosGolCabeca1" style="color: grey;"> Sim </label>
@@ -170,7 +170,7 @@
           <div class="col-sm-6">
             <!--  Numero de Escanteios do Palmeiras -->
             <div class="form-group">
-              <label for="inputNumeroEscanteios" style="color: darkgreen;">Numero de Escanteios do Palmeiras</label>
+              <label for="inputNumeroEscanteios" style="color: rgb(179, 209, 179);">Numero de Escanteios do Palmeiras</label>
               <input type="text" class="form-control" name="inputNumerosEscanteios" id="inputNumeroEscanteios" placeholder="Ex.: 8" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" oninvalid="this.setCustomValidity('Campo Obrigatorio')">
             </div>
           </div>
@@ -181,7 +181,7 @@
           <div class="col-sm-6">
             <!--  Primeiro Jogador do Pameiras a Tomar Cartao -->
             <div class="form-group">
-              <label for="inputPrimeiroCartao" style="color: darkgreen;">Primeiro Jogador do Palmeiras a Tomar Cartao</label>
+              <label for="inputPrimeiroCartao" style="color: rgb(179, 209, 179);">Primeiro Jogador do Palmeiras a Tomar Cartao</label>
               <input type="text" class="form-control" name="inputPrimeiroCartao" id="inputPrimeiroCartao" placeholder="Ex.: Evair" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" oninvalid="this.setCustomValidity('Campo Obrigatorio')">
             </div>
           </div>
@@ -192,7 +192,7 @@
           <div class="col-sm-6">
             <!--  Numero de Impedimentos do Palmeiras -->
             <div class="form-group">
-              <label for="inputNumeroImpedimentos" style="color: darkgreen;">Numero de Impedimentos do Palmeiras</label>
+              <label for="inputNumeroImpedimentos" style="color: rgb(179, 209, 179);">Numero de Impedimentos do Palmeiras</label>
               <input type="text" class="form-control" name="inputNumeroImpedimentos" id="inputNumeroImpedimentos" placeholder="Ex.: 3" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" oninvalid="this.setCustomValidity('Campo Obrigatorio')">
             </div>
           </div>
@@ -202,7 +202,7 @@
 
           <div class="col-sm-6">
             <!--  Submit -->
-            <button type="submit" class="btn btn-secondary" style="background-color: green; color: white;">Enviar</button>
+            <button type="submit" class="btn btn-secondary" style="background-color: rgb(99, 98, 98); color: white;">Enviar</button>
           </div>
 
         </div>

@@ -42,11 +42,11 @@ readfiles()
 			minute=$(date +%M)
 
 			dateHourMinuteCalculation  
-			echo "Sending file... $filename at $hour:$minute" >> ./logs/sendMessage.log 2>&1
-			python3 sendMessage.py $hour $minute $filename >> ./logs/sendMessage.log 2>&1
-			echo "File sent... $filename at $hour:$minute" >> ./logs/sendMessage.log 2>&1
-
-			echo $(date) ">>>> Moving file... $filename to ./sent" >> ./logs/sendMessage.log 2>&1
+			echo "Sending file... $filename at $hour:$minute"
+			python3 sendMessage.py $hour $minute $filename 
+			echo "File sent... $filename at $hour:$minute" 
+			
+			echo $(date) ">>>> Moving file... $filename to ./sent"
 			mv $filename ./sent
 
 		done <<< $(ls ./tosend/*.msg 2> /dev/null)
@@ -59,6 +59,6 @@ readfiles()
 while true
 do
     readfiles
-	echo "Sleeping for 5 seconds"
+	echo $(date) "Sleeping for 5 seconds"
     sleep 5
 done
