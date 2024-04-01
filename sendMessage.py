@@ -41,6 +41,7 @@ def formatMessage(msgDict: dict):
     msgText += f'*Resultado:* \n'
     msgText += f'{msgDict["inputResultadoGeral"]} \n'
     msgText += f'\n'
+    msgText += f'*Primeiro Jogador do Palmeiras a Fazer Gol:* {msgDict["inputPrimeiroJogadorGol"]} \n'
     msgText += f'*Minuto do Primeiro Gol:* {msgDict["inputMinutoPrimeiroGol"]} \n'
     msgText += f'*Primeiro lance do jogo:* {msgDict["radioPrimeiroLance"]} \n'
     msgText += f'*Primeiro Jogador do Palmeiras a Tomar Cartao:* {msgDict["inputPrimeiroCartao"]} \n'
