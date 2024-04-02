@@ -47,7 +47,7 @@ def formatMessage(msgDict: dict):
     msgText += f'*Primeiro Jogador do Palmeiras a Tomar Cartao:* {msgDict["inputPrimeiroCartao"]} \n'
     msgText += f'\n'
     msgText += f'*Nro. de Impedimentos do Palmeiras:* {msgDict["inputNumeroImpedimentos"]} \n'
-    msgText += f'*Nro. de Escanteios do Palmeiras:* {msgDict["inputNumeroImpedimentos"]} \n'
+    msgText += f'*Nro. de Escanteios do Palmeiras:* {msgDict["inputNumeroEscanteios"]} \n'
     msgText += f'\n'
     msgText += f'*Teremos Penalti?* {msgDict["radioTeremosPenalti"]} \n'
     msgText += f'*Teremos Gol nos Acrescimos?* {msgDict["radioTeremosGolAcrescimos"]} \n'
@@ -97,9 +97,11 @@ def run():
     # Send the message through WhatsApp
     messageReadyToSend = formatMessage(setMessageVariables(message))
     try:
-        pywhatkit.sendwhatmsg_to_group("J9c5nVLxz7QJxTrFY3YdOD", messageReadyToSend, hour, minute, 8, True, 5)
+        #pywhatkit.sendwhatmsg_to_group("J9c5nVLxz7QJxTrFY3YdOD", messageReadyToSend, hour, minute, 8, True, 5)
+        pywhatkit.sendwhatmsg_to_group("LsifEHTcGUjIIed4NMoPTh", messageReadyToSend, hour, minute, 8, True, 5)
     except pywhatkit.core.exceptions.CallTimeException as e:
-        pywhatkit.sendwhatmsg_to_group("J9c5nVLxz7QJxTrFY3YdOD", messageReadyToSend, hour+1, minute, 8, True, 5)
+        #pywhatkit.sendwhatmsg_to_group("J9c5nVLxz7QJxTrFY3YdOD", messageReadyToSend, hour, minute, 8, True, 5)
+        pywhatkit.sendwhatmsg_to_group("LsifEHTcGUjIIed4NMoPTh", messageReadyToSend, hour+1, minute, 8, True, 5)
         return
 
 if __name__ == '__main__':

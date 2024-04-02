@@ -36,12 +36,16 @@
 
       }
 
+      function setAutAndDate() {
+        document.getElementById("aut").value = hashCode()[0];
+        document.getElementById("date").value = hashCode()[1];
+      }
 
     </script>
   </head>
   <body style="background-color: rgb(0, 0, 0);">
 
-    <form  action="sendbet" method="post">
+    <form  action="sendbet" method="post" onsubmit="setAutAndDate()">
       {% csrf_token %}
 
       <input type="hidden" name="aut" id="aut"/>
@@ -65,7 +69,7 @@
               <!--  Apostador -->
             <div class="form-group">
               <label for="inputApostador" style="color: rgb(179, 209, 179);">Apostador:</label>
-              <input type="text" class="form-control" name="inputApostador" id="inputApostador" placeholder="Digite seu nome aqui" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" oninvalid="this.setCustomValidity('Campo Obrigatorio')">
+              <input type="text" class="form-control" name="inputApostador" id="inputApostador" placeholder="Digite seu nome aqui" >
             </div>
           </div>
 
@@ -77,7 +81,7 @@
               <!--  Resultado Geral -->
             <div class="form-group">
               <label for="inputResultadoGeral" style="color: rgb(179, 209, 179);">Resultado Geral</label>
-              <input type="text" class="form-control" name="inputResultadoGeral" id="inputResultadoGeral" placeholder="Palmeiras 4x0" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" oninvalid="this.setCustomValidity('Campo Obrigatorio')">
+              <input type="text" class="form-control" name="inputResultadoGeral" id="inputResultadoGeral" placeholder="Palmeiras 4x0" >
             </div>
           </div>
 
@@ -88,7 +92,7 @@
             <!--  Jogador do Palmeiras a marcar o Primeiro Gol -->
             <div class="form-group">
               <label for="inputPrimeiroJogadorGol" style="color: rgb(179, 209, 179);">Jogador do Palmeiras a marcar o Primeiro Gol</label>
-              <input type="text" class="form-control" name="inputPrimeiroJogadorGol" id="inputPrimeiroJogadorGol" placeholder="Ex.: Ademir da Ghia"  required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" oninvalid="this.setCustomValidity('Campo Obrigatorio')">
+              <input type="text" class="form-control" name="inputPrimeiroJogadorGol" id="inputPrimeiroJogadorGol" placeholder="Ex.: Ademir da Ghia"  >
             </div>
           </div>
 
@@ -99,7 +103,7 @@
             <!--  Minuto do Primeiro Gol -->
             <div class="form-group">
               <label for="inputMinutoPrimeiroGol" style="color: rgb(179, 209, 179);">Minuto do Primeiro Gol</label>
-              <input type="text" class="form-control" name="inputMinutoPrimeiroGol" id="inputMinutoPrimeiroGol" placeholder="Ex.: 25 min do Primeiro Tempo"  required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" oninvalid="this.setCustomValidity('Campo Obrigatorio')">
+              <input type="text" class="form-control" name="inputMinutoPrimeiroGol" id="inputMinutoPrimeiroGol" placeholder="Ex.: 25 min do Primeiro Tempo"  >
             </div>
           </div>
 
@@ -182,7 +186,7 @@
             <!--  Numero de Escanteios do Palmeiras -->
             <div class="form-group">
               <label for="inputNumeroEscanteios" style="color: rgb(179, 209, 179);">Numero de Escanteios do Palmeiras</label>
-              <input type="text" class="form-control" name="inputNumerosEscanteios" id="inputNumeroEscanteios" placeholder="Ex.: 8" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" oninvalid="this.setCustomValidity('Campo Obrigatorio')">
+              <input type="text" class="form-control" name="inputNumerosEscanteios" id="inputNumeroEscanteios" placeholder="Ex.: 8" >
             </div>
           </div>
 
@@ -193,7 +197,7 @@
             <!--  Primeiro Jogador do Pameiras a Tomar Cartao -->
             <div class="form-group">
               <label for="inputPrimeiroCartao" style="color: rgb(179, 209, 179);">Primeiro Jogador do Palmeiras a Tomar Cartao</label>
-              <input type="text" class="form-control" name="inputPrimeiroCartao" id="inputPrimeiroCartao" placeholder="Ex.: Evair" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" oninvalid="this.setCustomValidity('Campo Obrigatorio')">
+              <input type="text" class="form-control" name="inputPrimeiroCartao" id="inputPrimeiroCartao" placeholder="Ex.: Evair" >
             </div>
           </div>
 
@@ -204,7 +208,7 @@
             <!--  Numero de Impedimentos do Palmeiras -->
             <div class="form-group">
               <label for="inputNumeroImpedimentos" style="color: rgb(179, 209, 179);">Numero de Impedimentos do Palmeiras</label>
-              <input type="text" class="form-control" name="inputNumeroImpedimentos" id="inputNumeroImpedimentos" placeholder="Ex.: 3" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" oninvalid="this.setCustomValidity('Campo Obrigatorio')">
+              <input type="text" class="form-control" name="inputNumeroImpedimentos" id="inputNumeroImpedimentos" placeholder="Ex.: 3" >
             </div>
           </div>
 

@@ -46,10 +46,12 @@ readfiles()
 			python3 sendMessage.py $hour $minute $filename 
 			echo "File sent... $filename at $hour:$minute" 
 			
-			echo $(date) ">>>> Moving file... $filename to ./sent"
-			mv $filename ./sent
+			echo $(date) ">>>> Moving file... $filename to ./sent" $(mv $filename ./sent) 
+ 
+			sleep 10
 
 		done <<< $(ls ./tosend/*.msg 2> /dev/null)
+
 	fi
 
 }
@@ -59,6 +61,6 @@ readfiles()
 while true
 do
     readfiles
-	echo $(date) "Sleeping for 5 seconds"
+	echo $(date) ">>>> No more files to send, checking for more in 5 seconds..."
     sleep 5
 done
