@@ -43,7 +43,7 @@ readfiles()
 
 			dateHourMinuteCalculation  
 			echo "Sending file... $filename at $hour:$minute"
-			python3 sendMessage.py $hour $minute $filename 
+			python3 sendMessage.py $hour $minute $filename
 			echo "File sent... $filename at $hour:$minute" 
 			
 			echo $(date) ">>>> Moving file... $filename to ./sent" $(mv $filename ./sent) 

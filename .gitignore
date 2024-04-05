@@ -1,5 +1,6 @@
 __pycache__
 logs
+security
 sent/*
-./tosend
+tosend
 PyWhatKit_DB.txt
