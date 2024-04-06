@@ -3,13 +3,16 @@
 echo $(date) ">>>> Killing stuck processes" >> ./logs/unstuck.log
 
 echo $(date) "The following processes are stuck:" >> ./logs/unstuck.log
-echo $(ps -ef | grep jobSendMessage | grep -v color) >> ./logs/unstuck.log
-echo $(ps -ef | grep sendMessage | grep -v color) >> ./logs/unstuck.log
+echo $(pgrep jobSendMessage) >> ./logs/unstuck.log
+echo $(pgrep sendMessage) >> ./logs/unstuck.log
 
 echo $(date) "Killing them now...." >> ./logs/unstuck.log
 
-kill -9 $(ps -ef | grep jobSendMessage | grep -v color | cut -c'11-19') >> ./logs/unstuck.log 2>&1
-kill -9 $(ps -ef | grep sendMessage | grep -v color | cut -c'11-19') >> ./logs/unstuck.log 2>&1
+kill -9 $(pgrep jobSendMessage) >> ./logs/unstuck.log 2>&1
+kill -9 $(pgrep sendMessage) >> ./logs/unstuck.log 2>&1
+
+echo $(date) ">>>> Moving stuck files to ./stuck" >> ./logs/unstuck.log
+mv ./tosend/*.msg ./stuck 2> /dev/null 
 
 echo $(date) "Reviving whatever should relive...." >> ./logs/unstuck.log
 

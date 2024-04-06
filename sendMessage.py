@@ -163,16 +163,20 @@ def sendMessageEmail(message):
             username = credentials[0]
             password = credentials[1]
 
+        recipients = parms['to_email'].split(',')
+
         msg = MIMEText(messageReadyToSendEmail, 'plain', 'utf-8')
         msg['Subject'] = Header(f'{parms["subject"]}', 'utf-8')
         msg['From'] = parms['from_email']
-        msg['To'] = parms['to_email']
+        msg['To'] = ", ".join(recipients)
 
         server.ehlo()
         server.starttls()
         server.login(username,password)
-        server.sendmail(msg['From'], msg['To'], msg.as_string())
+        server.send_message(msg)
         server.quit()
+
+        print(f'{datetime.datetime.now()} - Email sent successfully to {msg["To"]}')
 
     except Exception as e:
         print(f'{datetime.datetime.now()} - An error occured while sending email: {e}')
@@ -220,4 +224,4 @@ if __name__ == '__main__':
     parms=readParmsFromFile()
     sendMessageEmail(message)
     sendMessageWhatsapp(message)
-    #asyncio.run(sendMessageWhatsapp(message))    
+    #asyncio.run(sendMessageWhatsappAsync(message))    

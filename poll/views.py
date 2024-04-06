@@ -3,6 +3,7 @@ from django.template import loader
 from django.shortcuts import render
 import datetime
 import subprocess
+from saopaulotz import SaoPauloTZ
 
 def poll(request):
 
@@ -15,7 +16,7 @@ def poll(request):
 def sendbet(request):
 
     formItems = request.POST.items()
-    x = datetime.datetime.now()
+    x = datetime.datetime.now(SaoPauloTZ())
 
     prefix=x.strftime("%d%m%Y%H%M%S")
     filename='./tosend/bet_'+prefix+'.msg'
