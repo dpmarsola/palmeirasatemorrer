@@ -119,11 +119,17 @@ def performInputValidations():
         return
 
 
-def readParmsFromFile():
+def readParmsFromFile(msgDict: dict):
 
     parmDict = {}
 
-    with open('./cfg/parms.cfg', 'r') as file:
+    # Read the content of the file
+    if msgDict["flagTest"] == 'True':
+        filename = './cfg/parms.cfg@test'
+    else:
+        filename = './cfg/parms.cfg'
+
+    with open(filename, 'r') as file:
         parms=file.read()
 
     try:
@@ -221,7 +227,7 @@ def sendMessageWhatsapp(message):
 if __name__ == '__main__':
     performInputValidations()
     message = readMessageFromFile()
-    parms=readParmsFromFile()
+    parms=readParmsFromFile(setMessageVariables(message))
     sendMessageEmail(message)
     sendMessageWhatsapp(message)
     #asyncio.run(sendMessageWhatsappAsync(message))    

@@ -36,16 +36,24 @@
 
       }
 
-      function setAutAndDate() {
+      function setHiddenValues() {
         document.getElementById("aut").value = hashCode()[0];
         document.getElementById("date").value = hashCode()[1];
-      }
+
+        const urlParams = new URLSearchParams(window.location.search);
+
+        if (urlParams.has('test')) {
+          document.getElementById("flagTest").value = "True";
+        } else {
+          document.getElementById("flagTest").value = "False";
+        }
+      } 
 
     </script>
   </head>
   <body style="background-color: rgb(0, 0, 0);">
 
-    <form  action="sendbet" method="post" onsubmit="setAutAndDate()">
+    <form  action="sendbet" method="post" onsubmit="setHiddenValues()">
       {% csrf_token %}
 
       <input type="hidden" name="aut" id="aut"/>
@@ -53,6 +61,8 @@
 
       <input type="hidden" name="date" id="date"/>
       <script>      document.getElementById("date").value = hashCode()[1];</script>
+
+      <input type="hidden" name="flagTest" id="flagTest"/>
 
 
       <div class="container-fluid" style="background-color: rgb(0, 0, 0);">
