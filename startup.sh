@@ -2,6 +2,22 @@
 
 cd ~/palmeirasatemorrer
 
+
+display_num=$(ps -ef | grep tigervnc | grep -v grep |  cut -c'53-75' | cut -d':' -f2 | cut -d' ' -f1)
+
+if [ -z "$display_num" ]
+then
+    echo $(date) ">>>> Starting VNC server" >> ./logs/startup.log
+    vncserver -localhost
+    display_num=$(ps -ef | grep tigervnc | grep -v grep |  cut -c'53-75' | cut -d':' -f2 | cut -d' ' -f1)
+    echo $(date) ">>>> VNC server started on display $display_num" >> ./logs/startup.log
+else
+    echo $(date) ">>>> VNC server already running on display $display_num" >> ./logs/startup.log
+fi
+
+DISPLAY=":$display_num"
+export DISPLAY
+
 echo $(date) ">>>> Starting up all processes" >> ./logs/startup.log
 
 nohup python3 manage.py runserver 8040 > ./logs/djangoserver.log 2>&1 & >> ./logs/startup.log 2>&1
