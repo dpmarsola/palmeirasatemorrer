@@ -59,6 +59,8 @@ readfiles()
 ################## MAIN ##############################
 cd ~/palmeirasatemorrer
 
+echo $DISPLAY
+
 while true
 do
     readfiles
