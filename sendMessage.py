@@ -217,7 +217,7 @@ def sendMessageWhatsapp(message):
         hour = int(sys.argv[1])
         minute = int(sys.argv[2])
     
-        pywhatkit.sendwhatmsg_to_group(parms['groupID'], messageReadyToSend, hour, minute, 8, True, 5)
+        pywhatkit.sendwhatmsg_to_group(parms['groupID'], messageReadyToSend, hour, minute, parms['seconds_to_wait_until_send'], True, parms['seconds_to_wait_for_close'])
         #pywhatkit.sendwhatmsg_to_group("LsifEHTcGUjIIed4NMoPTh", messageReadyToSend, hour, minute, 8, True, 5)
     except pywhatkit.core.exceptions.CallTimeException as e:
         pywhatkit.sendwhatmsg_to_group(parms['groupID'], messageReadyToSend, hour+1, minute, 8, True, 5)

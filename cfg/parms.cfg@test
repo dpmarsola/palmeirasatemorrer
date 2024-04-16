@@ -2,3 +2,8 @@ to_email=dpmarsola@gmail.com
 from_email=dpmarsola@gmail.com
 subject="Aposta PalmeirasAteMorrer"
 groupID=J9c5nVLxz7QJxTrFY3YdOD
+
+#pywhatkit parameters
+seconds_to_wait_until_send=15
+seconds_to_wait_for_close=5
+

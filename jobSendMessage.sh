@@ -57,6 +57,7 @@ readfiles()
 }
 
 ################## MAIN ##############################
+cd ~/palmeirasatemorrer
 
 while true
 do
