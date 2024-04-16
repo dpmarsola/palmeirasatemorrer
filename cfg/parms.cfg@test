@@ -2,6 +2,6 @@ to_email=dpmarsola@gmail.com
 from_email=dpmarsola@gmail.com
 subject="Aposta PalmeirasAteMorrer"
 groupID=J9c5nVLxz7QJxTrFY3YdOD
-seconds_to_wait_until_send=30
+seconds_to_wait_until_send=20
 seconds_to_wait_for_close=5
 
