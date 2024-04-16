@@ -2,6 +2,10 @@
 
 cd ~/palmeirasatemorrer
 
+echo $(date) ">>>>>>>>>> Starting a new Instance <<<<<<<<<<" > ./logs/startup.log
+
+echo $(date) ">>>> Setting up the timezone" >> ./logs/startup.log
+sudo timectl set-timezone America/Sao_Paulo
 
 display_num=$(ps -ef | grep tigervnc | grep -v grep |  cut -c'53-75' | cut -d':' -f2 | cut -d' ' -f1)
 
@@ -26,4 +30,4 @@ nohup ngrok http --domain=rare-exact-squirrel.ngrok-free.app 8040 > ./logs/ngrok
 sleep 3
 nohup ./jobSendMessage.sh > ./logs/jobSendMessage.log 2>&1 & >> ./logs/startup.log 2>&1
 
-echo $(date) ">>>> All processes started" >> ./logs/startup.log
+echo $(date) ">>>>>>>>>> All proccess were started <<<<<<<<<<" >> ./logs/startup.log

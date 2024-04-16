@@ -12,4 +12,5 @@ echo "password" >> ./security/credentials
 #todo list
 # make tigerVNC server run at startup
 # make the app run at startup
-# 
+# treat the international carachters in whatsapp message
+# add points to the soccer play
