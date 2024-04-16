@@ -3,11 +3,11 @@
 dateHourMinuteCalculation()
 {
 
-	minute=$(expr $minute + 1)
+	minute=$(expr $minute + 2)
 
 	if [ $minute -gt 59 ]
 	then
-	   if [ $minute -gt 61 ]
+	   if [ $minute -gt 62 ]
 	   then
 	     echo "Error: More than 60 minutes in an hour"
 	   else
