@@ -59,7 +59,7 @@ readfiles()
 ################## MAIN ##############################
 cd ~/palmeirasatemorrer
 
-ewhile true
+while true
 do
     readfiles
 	echo $(date) ">>>> No more files to send, checking for more in 5 seconds..."
