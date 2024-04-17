@@ -12,15 +12,28 @@ display_num=$(ps -ef | grep tigervnc | grep -v grep |  cut -c'53-75' | cut -d':'
 if [ -z "$display_num" ]
 then
     echo $(date) ">>>> Starting VNC server" >> ./logs/startup.log
-    vncserver -localhost
-    display_num=$(ps -ef | grep tigervnc | grep -v grep |  cut -c'53-75' | cut -d':' -f2 | cut -d' ' -f1)
-    echo $(date) ">>>> VNC server started on display $display_num" >> ./logs/startup.log
+    vncserver -localhost 2> /dev/null
+    result=$?
+    if [ $result -ne 0 ]
+    then
+        echo $(date) ">>>> Failed to start VNC server Error: " $result >> ./logs/startup.log
+        echo $(date) ">>>> Starting withouth VNC server. The script sendMessage.py@jobSendMessage.sh will not work if there is no display." >> ./logs/startup.log
+    else
+        display_num=$(ps -ef | grep tigervnc | grep -v grep |  cut -c'53-75' | cut -d':' -f2 | cut -d' ' -f1)
+        echo $(date) ">>>> VNC server started on display $display_num" >> ./logs/startup.log
+    fi
 else
     echo $(date) ">>>> VNC server already running on display $display_num" >> ./logs/startup.log
 fi
 
-DISPLAY=":$display_num"
-export DISPLAY
+if [ -z "$display_num" ]
+then
+    echo $(date) ">>>> Display number not found. Starting with default display set at the login: " $DISPLAY >> ./logs/startup.log
+else
+    echo $(date) ">>>> Setting up the display" >> ./logs/startup.log
+    export DISPLAY=":$display_num"
+    echo $(date) ">>>> Display set to $DISPLAY" >> ./logs/startup.log
+fi
 
 echo $(date) ">>>> Starting up all processes" >> ./logs/startup.log
 
