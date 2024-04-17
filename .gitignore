@@ -3,4 +3,5 @@ logs
 security
 sent/*
 tosend
+stuck
 PyWhatKit_DB.txt
