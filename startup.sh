@@ -37,7 +37,7 @@ fi
 
 echo $(date) ">>>> Starting up all processes" >> ./logs/startup.log
 
-nohup python3 manage.py runserver 0.0.0.0:8040 > ./logs/djangoserver.log 2>&1 & >> ./logs/startup.log 2>&1
+nohup python3 manage.py runserver 8040 > ./logs/djangoserver.log 2>&1 & >> ./logs/startup.log 2>&1
 sleep 3
 nohup ngrok http --domain=rare-exact-squirrel.ngrok-free.app 8040 > ./logs/ngrok.log 2>&1 & >> ./logs/startup.log 2>&1
 sleep 3
