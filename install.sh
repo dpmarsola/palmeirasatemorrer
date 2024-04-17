@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-mkdir ./logs ./sent ./tosend ./security
+mkdir ./logs ./sent ./tosend ./security ./stuck
 
 pip install pywhatkit django
 
