@@ -46,7 +46,8 @@ readfiles()
 			python3 sendMessage.py $hour $minute $filename
 			echo "File sent... $filename at $hour:$minute" 
 			
-			echo $(date) ">>>> Moving file... $filename to ./sent" $(mv $filename ./sent) 
+			echo $(date) ">>>> Moving file... $filename to ./sent"
+			mv $filename ./sent 2> /dev/null 
  
 			sleep 10
 

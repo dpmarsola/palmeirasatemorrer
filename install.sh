@@ -5,6 +5,8 @@ mkdir ./logs ./sent ./tosend ./security ./stuck
 pip install pywhatkit django
 
 sudo apt install python3-tk python3-dev
+sudo snap install ngrok
+ngrok config add-authtoken <check your ngrok account for the token>
 
 echo "email" >> ./security/credentials
 echo "password" >> ./security/credentials
