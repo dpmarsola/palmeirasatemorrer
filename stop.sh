@@ -1,5 +1,7 @@
 #!/usr/bin/bash
 
+export HOME=/home/ubuntu
+
 cd ~/palmeirasatemorrer
 
 echo $(date) ">>>>>>>>>> Killing all processes <<<<<<<<<<" >> ./logs/stop.log

@@ -1,5 +1,7 @@
 #!/usr/bin/bash
 
+export HOME=/home/ubuntu
+
 cd ~/palmeirasatemorrer
 
 echo $(date) ">>>>>>>>>> Starting a new Instance <<<<<<<<<<" > ./logs/startup.log
