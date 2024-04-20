@@ -1,0 +1,13 @@
+[Unit]
+Description=Daemon to start the service palmeirasatemorrer
+After=ssh.service
+
+[Service]
+EnvironmentFile=-/palmeirasatemorrer/
+ExecStart=~/palmeirasatemorrer/startup.sh
+ExecStop=~/palmeirasatemorrer/stop.sh
+KillMode=process
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
