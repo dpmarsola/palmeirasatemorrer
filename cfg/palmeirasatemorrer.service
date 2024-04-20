@@ -3,8 +3,8 @@ Description=Daemon to start the service palmeirasatemorrer
 After=ssh.service
 
 [Service]
-ExecStart=/home/ubuntu/palmeirasatemorrer/startup.sh
-ExecStop=/home/ubuntu/palmeirasatemorrer/stop.sh
+ExecStart=/home/ubuntu/palmeirasatemorrer/startup.sh &
+ExecStop=/home/ubuntu/palmeirasatemorrer/stop.sh &
 
 [Install]
 WantedBy=multi-user.target
