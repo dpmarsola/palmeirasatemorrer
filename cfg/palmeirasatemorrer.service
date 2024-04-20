@@ -5,8 +5,6 @@ After=ssh.service
 [Service]
 ExecStart=/home/ubuntu/palmeirasatemorrer/startupd.sh
 ExecStop=/home/ubuntu/palmeirasatemorrer/stopd.sh
-KillMode=process
-Restart=on-failure
 
 [Install]
 WantedBy=multi-user.target
