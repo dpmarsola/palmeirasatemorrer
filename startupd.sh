@@ -1,3 +1,3 @@
 #!/usr/bin/bash
 
-su - ubunutu -c ¨~/palmeirasatemorrer/startup.sh¨
+su - ubuntu -c ¨~/palmeirasatemorrer/startup.sh¨
