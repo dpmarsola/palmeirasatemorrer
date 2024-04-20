@@ -3,9 +3,8 @@ Description=Daemon to start the service palmeirasatemorrer
 After=ssh.service
 
 [Service]
-EnvironmentFile=-/palmeirasatemorrer/
-ExecStart=~/palmeirasatemorrer/startup.sh
-ExecStop=~/palmeirasatemorrer/stop.sh
+ExecStart=/home/ubuntu/palmeirasatemorrer/startup.sh
+ExecStop=/home/ubuntu/palmeirasatemorrer/stop.sh
 KillMode=process
 Restart=on-failure
 
