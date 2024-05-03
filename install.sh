@@ -59,6 +59,7 @@ echo "password" >> ./security/credentials
 sudo cp ./cfg/palmeiras.service /etc/systemd/system
 sudo chmod 644 /etc/systemd/system/palmeiras.service
 sudo systemctl enable palmeiras.service
+sudo systemctl daemon-reload
 
 echo "Please rebot your system..."
 
