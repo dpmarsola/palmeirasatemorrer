@@ -56,9 +56,7 @@ echo "email" >> ./security/credentials
 echo "password" >> ./security/credentials
 
 
-sudo cp cfg/palmeirasatemorrer.service /etc/systemd/system/palmeirasatemorrer.service
-sudo systemctl enable palmeirasatemorrer.service
-sudo systemctl start palmeirasatemorrer.service
+sudo cp startup.sh /etc/init.d/palmeiras_startup.sh
 
 #todo list
 # make tigerVNC server run at startup
