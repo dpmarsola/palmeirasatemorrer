@@ -1,0 +1,10 @@
+[Unit]
+Description=Run Palmeiras Service at Boot.
+
+[Service]
+Type=simple
+ExecStart=/bin/bash /home/ubuntu/palmeiras/initrc_palmeiras.sh
+
+[Install]
+WantedBy=multi-user.target
+

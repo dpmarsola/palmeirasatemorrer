@@ -56,7 +56,11 @@ echo "email" >> ./security/credentials
 echo "password" >> ./security/credentials
 
 
-sudo cp startup.sh /etc/init.d/palmeiras_startup.sh
+sudo cp ./cfg/palmeiras.service /etc/systemd/system
+sudo chmod 644 /etc/systemd/system/palmeiras.service
+sudo systemctl enable palmeiras.service
+
+echo "Please rebot your system..."
 
 #todo list
 # make tigerVNC server run at startup
