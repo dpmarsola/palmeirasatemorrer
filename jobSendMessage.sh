@@ -69,7 +69,7 @@ do
 	hour=$(date +%H)
 	minute=$(date +%M)
 
-	if [ $hour -eq 16 ] && [ $minute -eq 8 ]
+	if [ $hour -eq 6 ] && [ $minute -eq 0 ]
 	then
 		echo $(date) ">>>> It is 6 o'clock, writing a file to send..."
 		cp ./cfg/test.msg ./tosend/bet_test_$(date +%Y%m%d%H%M%S).msg
