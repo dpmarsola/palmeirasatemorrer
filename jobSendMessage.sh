@@ -64,5 +64,16 @@ while true
 do
     readfiles
 	echo $(date) ">>>> No more files to send, checking for more in 5 seconds..."
+
+	#check it it is 6 o clock and write a test file to send
+	hour=$(date +%H)
+	minute=$(date +%M)
+
+	if [ $hour -eq 16 ] && [ $minute -eq 8 ]
+	then
+		echo $(date) ">>>> It is 6 o'clock, writing a file to send..."
+		cp ./cfg/test.msg ./tosend/bet_test_$(date +%Y%m%d%H%M%S).msg
+	fi
+
     sleep 5
 done
