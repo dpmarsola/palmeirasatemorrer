@@ -16,7 +16,7 @@ def setMessageVariables(message):
     msgDict = {}
     for a in result:
         res.append(a.replace('\'', '').replace('(', '').replace(')', '').replace(',', ''))
-                
+
     for b in res:
         try:
             c = b.split(' ')
@@ -40,34 +40,34 @@ def setMessageVariables(message):
     return msgDict
 
 def formatMessageWhatsapp(msgDict: dict):
-    
+
     msgText = ''
 
-    msgText += f'*Aposta de:* \n' 
+    msgText += f'*Aposta de:* \n'
     msgText += f'{msgDict["inputApostador"]} \n'
     msgText += f'\n'
     msgText += f'*Resultado:* \n'
     msgText += f'{msgDict["inputResultadoGeral"]} \n'
     msgText += f'\n'
-    msgText += f'*Primeiro Jogador do Palmeiras a Fazer Gol:*'    
+    msgText += f'*Primeiro Jogador do Palmeiras a Fazer Gol:* \n'
     msgText += f'{msgDict["inputPrimeiroJogadorGol"]} \n'
-    msgText += f'*Minuto do Primeiro Gol:*'    
+    msgText += f'*Minuto do Primeiro Gol:* \n'
     msgText += f'{msgDict["inputMinutoPrimeiroGol"]} \n'
-    msgText += f'*Primeiro Jogador do Palmeiras a Tomar Cartao:*'    
+    msgText += f'*Primeiro Jogador do Palmeiras a Tomar Cartao:* \n'
     msgText += f'{msgDict["inputPrimeiroCartao"]} \n'
-    msgText += f'*Primeiro lance do jogo:*'    
+    msgText += f'*Primeiro lance do jogo:* \n'
     msgText += f'{msgDict["radioPrimeiroLance"]} \n'
     msgText += f'\n'
-    msgText += f'*Teremos Penalti?*'    
+    msgText += f'*Teremos Penalti?* \n'
     msgText += f'{msgDict["radioTeremosPenalti"]} \n'
-    msgText += f'*Teremos Gol nos Acrescimos?*'    
+    msgText += f'*Teremos Gol nos Acrescimos?* \n'
     msgText += f'{msgDict["radioTeremosGolAcrescimos"]} \n'
-    msgText += f'*Teremos Gol de Cabeca?*'    
+    msgText += f'*Teremos Gol de Cabeca?* \n'
     msgText += f'{msgDict["radioTeremosGolCabeca"]} \n'
     msgText += f'\n'
-    msgText += f'*Nro. de Escanteios do Palmeiras:*'    
+    msgText += f'*Nro. de Escanteios do Palmeiras:* \n'
     msgText += f'{msgDict["inputNumeroEscanteios"]} \n'
-    msgText += f'*Nro. de Impedimentos do Palmeiras:*'    
+    msgText += f'*Nro. de Impedimentos do Palmeiras:* \n'
     msgText += f'{msgDict["inputNumeroImpedimentos"]} \n'
     msgText += f'\n'
     msgText += f'_Horario da Aposta: {msgDict["date"]}_ \n'
@@ -77,33 +77,33 @@ def formatMessageWhatsapp(msgDict: dict):
     return msgText
 
 def formatMessageEmail(msgDict: dict):
-    
+
     msgText = ''
 
-    msgText += f'Aposta de: \n' 
+    msgText += f'Aposta de: \n'
     msgText += f'{msgDict["inputApostador"]} \n'
     msgText += f'\n'
     msgText += f'Resultado: \n'
     msgText += f'{msgDict["inputResultadoGeral"]} \n'
     msgText += f'\n'
-    msgText += f'Primeiro Jogador do Palmeiras a Fazer Gol:'    
+    msgText += f'Primeiro Jogador do Palmeiras a Fazer Gol: \n'
     msgText += f'{msgDict["inputPrimeiroJogadorGol"]} \n'
-    msgText += f'Minuto do Primeiro Gol:'    
+    msgText += f'Minuto do Primeiro Gol: \n'
     msgText += f'{msgDict["inputMinutoPrimeiroGol"]} \n'
-    msgText += f'Primeiro Jogador do Palmeiras a Tomar Cartao:'    
+    msgText += f'Primeiro Jogador do Palmeiras a Tomar Cartao: \n'
     msgText += f'{msgDict["inputPrimeiroCartao"]} \n'
     msgText += f'Primeiro lance do jogo: {msgDict["radioPrimeiroLance"]} \n'
     msgText += f'\n'
-    msgText += f'Teremos Penalti?'    
+    msgText += f'Teremos Penalti? \n'
     msgText += f'{msgDict["radioTeremosPenalti"]} \n'
-    msgText += f'Teremos Gol nos Acrescimos?'    
+    msgText += f'Teremos Gol nos Acrescimos? \n'
     msgText += f'{msgDict["radioTeremosGolAcrescimos"]} \n'
-    msgText += f'Teremos Gol de Cabeca?'    
+    msgText += f'Teremos Gol de Cabeca? \n'
     msgText += f'{msgDict["radioTeremosGolCabeca"]} \n'
     msgText += f'\n'
-    msgText += f'Nro. de Escanteios do Palmeiras:'    
+    msgText += f'Nro. de Escanteios do Palmeiras: \n'
     msgText += f'{msgDict["inputNumeroEscanteios"]} \n'
-    msgText += f'Nro. de Impedimentos do Palmeiras:'    
+    msgText += f'Nro. de Impedimentos do Palmeiras: \n'
     msgText += f'{msgDict["inputNumeroImpedimentos"]} \n'
     msgText += f'\n'
     msgText += f'Horario da Aposta:{msgDict["date"]} \n'
@@ -122,7 +122,7 @@ def performInputValidations():
         if int(sys.argv[1]) < 0 or int(sys.argv[1]) > 23:
             print(f'{datetime.datetime.now()} - Error: Invalid hour')
             return
-        
+
         if int(sys.argv[2]) < 0 or int(sys.argv[2]) > 59:
             print(f'{datetime.datetime.now()} - Error: Invalid minute')
             return
@@ -156,7 +156,7 @@ def readParmsFromFile(msgDict: dict):
         pass
 
     return parmDict
-            
+
 
 def readMessageFromFile():
 
@@ -204,13 +204,13 @@ def sendMessageEmail(message):
     except Exception as e:
         print(f'{datetime.datetime.now()} - An error occured while sending email: {e}')
         return
-    
+
 
 async def sendMessageWhatsappAsync(message):
 
     # Send the message through WhatsApp
     messageReadyToSendWhatsapp = formatMessageWhatsapp(setMessageVariables(message))
-    
+
     try:
 
         hour = int(sys.argv[1])
@@ -226,14 +226,14 @@ def sendMessageWhatsapp(message):
 
     # Send the message through WhatsApp
     messageReadyToSendWhatsapp = formatMessageWhatsapp(setMessageVariables(message))
-    
+
     # Send the message through WhatsApp
     messageReadyToSend = formatMessageWhatsapp(setMessageVariables(message))
     try:
 
         hour = int(sys.argv[1])
         minute = int(sys.argv[2])
-    
+
         pywhatkit.sendwhatmsg_to_group(parms['groupID'], messageReadyToSend, hour, minute, int(parms['seconds_to_wait_until_send']), True, int(parms['seconds_to_wait_for_close']))
         #pywhatkit.sendwhatmsg_to_group("LsifEHTcGUjIIed4NMoPTh", messageReadyToSend, hour, minute, 8, True, 5)
     except pywhatkit.core.exceptions.CallTimeException as e:
@@ -247,4 +247,4 @@ if __name__ == '__main__':
     parms=readParmsFromFile(setMessageVariables(message))
     sendMessageEmail(message)
     sendMessageWhatsapp(message)
-    #asyncio.run(sendMessageWhatsappAsync(message))    
+    #asyncio.run(sendMessageWhatsappAsync(message))
