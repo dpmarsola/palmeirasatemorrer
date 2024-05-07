@@ -43,6 +43,7 @@ def formatMessageWhatsapp(msgDict: dict):
     
     msgText = ''
 
+    msgText += f'=============== \n' 
     msgText += f'*Aposta de:* \n' 
     msgText += f'{msgDict["inputApostador"]} \n'
     msgText += f'\n'
