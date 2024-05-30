@@ -78,20 +78,22 @@ then
         echo "Failed to add authtoken to ngrok"
         exit 1
     fi
-else
-    echo "No token was provided."
-    exit 1
 fi
 
 echo "====== Setting BREVO credentials =========="
 echo "Please enter your email and password for access BREVO service: "
 read -p "EMAIL: " email
 read -s -p "PASSWORD: " password
-echo $email >> ./security/credentials
-echo $password >> ./security/credentials
+
+if [ ! -z $email ] && [ ! -z $password ]
+then
+    echo $email >> ./security/credentials
+    echo $password >> ./security/credentials
+    echo -e "\n"
+fi
 
 echo "====== Installing X11 and Its Stuff ======="
-sudo apt-get install xorg openbox -y
+sudo apt install xorg openbox -y
 
 if [ $? -ne 0 ]
 then
@@ -100,12 +102,35 @@ then
 fi
 
 echo "====== Installing XFCE ===================="
-sudo apt-get install xfce4-session xfce4-goodies -y
+sudo apt install xfce4-session xfce4-goodies -y
 
 if [ $? -ne 0 ]
 then
     echo "Failed to install xfce"
     exit 1
+fi
+
+echo "====== Installing VNC Server =============="
+sudo apt install tigervnc-standalone-server -y
+
+if [ $? -ne 0 ]
+then
+    echo "Failed to install xfce"
+    exit 1
+else 
+    mkdir ~/.vnc
+    echo "startxfce4" > ~/.vnc/xstartup
+    chmod a+x ~/.vnc/xstartup
+    sudo cp /etc/tigervnc/vncserver.users tmp \
+         && sudo chown ubuntu:ubuntu tmp \
+         && echo ":1=ubuntu" >> tmp \
+         && sudo chown root:root tmp \
+         && sudo mv tmp /etc/tigervnc/vncserver.users
+    sudo cp /lib/systemd/system/tigervncserver@.service /etc/systemd/system/
+    echo "Please provide a password to access the VNC Server: "
+    vncpasswd 
+    sudo systemctl enable tigervncserver@:1
+    sudo systemctl start tigervncserver@:1
 fi
 
 echo "====== Set Service to Run at Startup ======"
@@ -114,15 +139,16 @@ sudo chmod 644 /etc/systemd/system/palmeiras.service
 sudo systemctl enable palmeiras.service
 sudo systemctl daemon-reload
 
-echo "====== Finalizing Installation ============"
-read -p "System need to reebot. Want to reboot it now (Y/N)?" $reboot
+echo "====== Create Swapfile and Partition ======"
+sudo fallocate -l 1G /swapfile
+sudo chmod 600 /swapfile 
+sudo stat /swapfile 
+sudo mkswap /swapfile 
+sudo swapon /swapfile
+sudo echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
 
-if [ "$reboot" = "Y" ]
-then
-    sudo shutdown -r now
-else
-    exit 0
-fi
+echo "====== Finalizing Installation ============"
+exit 0
 
 #todo list
 # make tigerVNC server run at startup
