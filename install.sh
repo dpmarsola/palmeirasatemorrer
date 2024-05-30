@@ -112,6 +112,7 @@ fi
 
 echo "====== Installing VNC Server =============="
 sudo apt install tigervnc-standalone-server -y
+sudo apt install dbus-x11
 
 if [ $? -ne 0 ]
 then
