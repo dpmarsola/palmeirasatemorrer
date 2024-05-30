@@ -1,6 +1,12 @@
 #!/usr/bin/bash
 
-codename=$(cat /etc/os-release | grep VERSION_CODENAME | cut -d'=' -f2)
+echo "====== Create Swapfile and Partition ======"
+sudo fallocate -l 1G /swapfile
+sudo chmod 600 /swapfile 
+sudo stat /swapfile 
+sudo mkswap /swapfile 
+sudo swapon /swapfile
+sudo echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
 
 echo "====== Setting packages for download ======"
 echo "
@@ -10,6 +16,7 @@ deb [arch=arm64] http://ports.ubuntu.com/ <<version_codename>>-backports main mu
 deb [arch=arm64] http://ports.ubuntu.com/ <<version_codename>>-updates main multiverse universe
 " > tmp
 
+codename=$(cat /etc/os-release | grep VERSION_CODENAME | cut -d'=' -f2)
 sed -i 's/<<version_codename>>/'${codename}'/g' tmp
 
 sudo mv tmp /etc/apt/sources.list.d/my_list.list
@@ -140,13 +147,8 @@ sudo chmod 644 /etc/systemd/system/palmeiras.service
 sudo systemctl enable palmeiras.service
 sudo systemctl daemon-reload
 
-echo "====== Create Swapfile and Partition ======"
-sudo fallocate -l 1G /swapfile
-sudo chmod 600 /swapfile 
-sudo stat /swapfile 
-sudo mkswap /swapfile 
-sudo swapon /swapfile
-sudo echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
+echo "====== Installing Chrome Browser =========="
+sudo apt install chromium-browser
 
 echo "====== Finalizing Installation ============"
 exit 0
