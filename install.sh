@@ -101,6 +101,8 @@ fi
 
 echo "====== Installing X11 and Its Stuff ======="
 sudo apt install xorg openbox -y
+sudo chown ubuntu:ubuntu ~/.Xauthority
+sudo chmod 775 ~/.Xauthority
 
 if [ $? -ne 0 ]
 then
