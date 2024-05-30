@@ -94,8 +94,8 @@ read -s -p "PASSWORD: " password
 
 if [ ! -z $email ] && [ ! -z $password ]
 then
-    echo $email >> ./security/credentials
-    echo $password >> ./security/credentials
+    echo $email > ./security/credentials
+    echo $password > ./security/credentials
     echo -e "\n"
 fi
 
