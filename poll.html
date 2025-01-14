@@ -3,7 +3,6 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Add additional CSS in static file -->
-    {% load static %}
     <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -36,6 +35,41 @@
 
       }
 
+      function getDataAndRedirectToWhatsapp() {
+
+        console.log('getDataForWhatsapp')
+
+        let msgText = '';
+
+        msgText += '*Aposta de:* \n';
+        msgText += document.getElementById("inputApostador").value + '\n\n';
+        msgText += '*Resultado:* \n';
+        msgText += document.getElementById("inputResultadoGeral").value + '\n\n';
+        msgText += '*Primeiro Jogador do Palmeiras a Fazer Gol:* \n';
+        msgText += document.getElementById("inputPrimeiroJogadorGol").value + '\n';
+        msgText += '*Minuto do Primeiro Gol:* \n';
+        msgText += document.getElementById("inputMinutoPrimeiroGol").value + '\n';
+        msgText += '*Primeiro Jogador do Palmeiras a Tomar Cartao:* \n';
+        msgText += document.getElementById("inputPrimeiroCartao").value + '\n';
+        msgText += '*Primeiro lance do jogo:* \n';
+        msgText += document.querySelector('input[name="radioPrimeiroLance"]:checked').value + '\n\n';
+        msgText += '*Teremos Penalti?* \n';
+        msgText += document.querySelector('input[name="radioTeremosPenalti"]:checked').value + '\n';
+        msgText += '*Teremos Gol nos Acrescimos?* \n';
+        msgText += document.querySelector('input[name="radioTeremosGolAcrescimos"]:checked').value + '\n';
+        msgText += '*Teremos Gol de Cabeca?* \n';
+        msgText += document.querySelector('input[name="radioTeremosGolCabeca"]:checked').value + '\n\n';
+        msgText += '*Nro. de Escanteios do Palmeiras:* \n';
+        msgText += document.getElementById("inputNumeroEscanteios").value + '\n';
+        msgText += '*Nro. de Impedimentos do Palmeiras:* \n';
+        msgText += document.getElementById("inputNumeroImpedimentos").value + '\n\n';
+        msgText += '_Horario da Aposta:_ ' + document.getElementById("date").value + '\n';
+        msgText += '_Identificador:_ ' + document.getElementById("aut").value + '\n';
+
+        window.location.href = "https://wa.me/?text=" + encodeURIComponent(msgText);
+
+      }
+
       function setHiddenValues() {
         document.getElementById("aut").value = hashCode()[0];
         document.getElementById("date").value = hashCode()[1];
@@ -52,9 +86,7 @@
     </script>
   </head>
   <body style="background-color: rgb(0, 0, 0);">
-
     <form  action="sendbet" method="post" onsubmit="setHiddenValues()">
-      {% csrf_token %}
 
       <input type="hidden" name="aut" id="aut"/>
       <script>      document.getElementById("aut").value = hashCode()[0];</script>
@@ -64,14 +96,8 @@
 
       <input type="hidden" name="flagTest" id="flagTest"/>
 
-
       <div class="container-fluid" style="background-color: rgb(0, 0, 0);">
-
-        <div class="row">
-          <div class="col-sm-6">
-            <div class="box" style="visibility: visible;" ><img src="https://pbs.twimg.com/media/Du8TKaMW0AA7Lnc.jpg"></div>
-          </div>
-        </div>
+        <img src="https://pbs.twimg.com/media/Du8TKaMW0AA7Lnc.jpg" class="img-responsive" alt="Palmeiras Ate Morrer">
 
         <div class="row">
 
@@ -157,7 +183,7 @@
             </div>
             <div class="form-check">
               <input class="form-check-input" type="radio" name="radioTeremosPenalti" id="radioTeremosPenalti2" value="Nao" />
-              <label class="form-check-label" for="radioTeremosPenalti2" style="color: grey;"> Não </label>
+              <label class="form-check-label" for="radioTeremosPenalti2" style="color: grey;"> Nao </label>
             </div>
           </div>
 
@@ -173,7 +199,7 @@
             </div>
             <div class="form-check">
               <input class="form-check-input" type="radio" name="radioTeremosGolAcrescimos" id="radioTeremosGolAcrescimos2" value="Nao"/>
-              <label class="form-check-label" for="radioTeremosGolAcrescimos2" style="color: grey;"> Não </label>
+              <label class="form-check-label" for="radioTeremosGolAcrescimos2" style="color: grey;"> Nao </label>
             </div>
           </div>
 
@@ -189,7 +215,7 @@
             </div>
             <div class="form-check">
               <input class="form-check-input" type="radio" name="radioTeremosGolCabeca" id="radioTeremosGolCabeca2" value="Nao"/>
-              <label class="form-check-label" for="radioTeremosGolCabeca2" style="color: grey;"> Não </label>
+              <label class="form-check-label" for="radioTeremosGolCabeca2" style="color: grey;"> Nao </label>
             </div>
           </div>
 
@@ -228,16 +254,15 @@
 
         </div>
         <div class="row">
-
           <div class="col-sm-6">
             <!--  Submit -->
-            <button type="submit" class="btn btn-secondary" style="background-color: rgb(99, 98, 98); color: white;">Enviar</button>
+            <div style="display: inline-block; padding: 10px; background-color: #134215; border-radius: 8px; cursor: pointer;">
+              <label onclick="getDataAndRedirectToWhatsapp()" style="color: rgb(179, 209, 179);">Enviar Aposta</label>
+            </div>
           </div>
-
         </div>
 
       </div>
-
     </form>
   </body>
 </html>
