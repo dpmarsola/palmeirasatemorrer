@@ -51,8 +51,8 @@
         msgText += document.getElementById("inputMinutoPrimeiroGol").value + '\n';
         msgText += '*Primeiro Jogador do Palmeiras a Tomar Cartao:* \n';
         msgText += document.getElementById("inputPrimeiroCartao").value + '\n';
-        msgText += '*Primeiro lance do jogo:* \n';
-        msgText += document.querySelector('input[name="radioPrimeiroLance"]:checked').value + '\n\n';
+        msgText += '*Minuto da Primeira Substituicao do Jogo:* \n';
+        msgText += document.getElementById("inputMinutoPrimeiraSub").value + '\n\n';
         msgText += '*Teremos Penalti?* \n';
         msgText += document.querySelector('input[name="radioTeremosPenalti"]:checked').value + '\n';
         msgText += '*Teremos Gol nos Acrescimos?* \n';
@@ -147,27 +147,10 @@
         <div class="row">
 
           <div class="col-sm-6">
-            <!--  Primeiro Lance -->
-            <label class="form-label" for="form12" style="color: rgb(179, 209, 179);">Primeiro lance do jogo</label>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="radioPrimeiroLance" id="radioPrimeiroLance0" value="Lateral" checked/>
-              <label class="form-check-label" for="radioPrimeiroLance1" style="color: grey;"> Lateral (+1 pt)</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="radioPrimeiroLance" id="radioPrimeiroLance1" value="Falta"/>
-              <label class="form-check-label" for="radioPrimeiroLance0" style="color: grey;"> Falta (+2 pts)</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="radioPrimeiroLance" id="radioPrimeiroLance2" value="Impedimento"/>
-              <label class="form-check-label" for="radioPrimeiroLance2" style="color: grey;"> Impedimento (+5 pts)</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="radioPrimeiroLance" id="radioPrimeiroLance3" value="Escanteio" />
-              <label class="form-check-label" for="radioPrimeiroLance3" style="color: grey;"> Escanteio (+8 pts)</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="radioPrimeiroLance" id="radioPrimeiroLance4" value="Gol"/>
-              <label class="form-check-label" for="radioPrimeiroLance4" style="color: grey;"> Gol (+15 pts)</label>
+            <!--  Minuto da Primeira Substituicao -->
+            <div class="form-group">
+              <label for="inputMinutoPrimeiraSub" style="color: rgb(179, 209, 179);">Minuto da Primeira Substituicao</label>
+              <input type="text" class="form-control" name="inputMinutoPrimeiraSub" id="inputMinutoPrimeiraSub" placeholder="Ex.: 30 min do Primeiro Tempo"  >
             </div>
           </div>
 
